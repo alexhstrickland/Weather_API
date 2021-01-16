@@ -4,5 +4,7 @@ header {
     margin-top: 0;
     text-align: center;
     padding: 5px;
-    
+}
+.col-md-4 {
+    background-color: lime;
 }

@@ -20,39 +20,29 @@ $("document").ready(function(){
 
     $("#cityBtn").on("click", function(event) {
         event.preventDefault();
-        $("#recentSearches").html("");
         clearInfo();
         var city = $("#city").val();
         console.log(city);
         getInfo(city);
-        // addCities(city);
+        addCities(city);
 
+    })
+
+    function addCities(city) {
         recentCities.push(city);
         console.log(recentCities);
         if (recentCities.length == 5) {
             recentCities.shift()
         }
+        $("#recentSearches").html("");
 
-        $.each(recentCities, function(index, value) {
-            $("#recentSearches").html("");
-            var btn = $("<li class='list-group-item'>").html(value);
+
+        for (var i = 0; i < recentCities.length; i++) {
+            localStorage.setItem("History", JSON.stringify(recentCities));
+            var btn = $("<li class='list-group-item'>").html(recentCities[i]);
             $("#recentSearches").append(btn);
-        })
-    })
-
-    // function addCities(city) {
-    //     recentCities.push(city);
-    //     console.log(recentCities);
-    //     if (recentCities.length == 5) {
-    //         recentCities.shift()
-    //     }
-
-    //     $.each(recentCities, function(index, value) {
-    //         $("#recentSearches").html("");
-    //         var btn = $("<li class='list-group-item'>").html(value);
-    //         $("#recentSearches").append(btn);
-    //     })
-    // }
+        }
+    }
 
 
     function clearInfo() {

@@ -64,5 +64,14 @@ h2 {
 
 .UV {
     border: solid red 1px;
-    margin-right: 25px;
 }
+
+#cityName {
+    font-size: larger;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#currentTemp, #humidity, #windSpeed, #UVIndex {
+    margin-bottom: 20px;
+} 

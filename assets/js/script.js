@@ -71,7 +71,7 @@ $("document").ready(function(){
     
         $("#cityName").append(cityName, iconImage);
         $("#currentTemp").append("Temperature: " + currentTemp);
-        $("#humidity").append("Humidity: " + humidity);
+        $("#humidity").append("Humidity: " + humidity + "%");
         $("#windSpeed").append("Wind Speed: " + windSpeed);
 
 

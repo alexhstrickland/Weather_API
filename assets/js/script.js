@@ -16,15 +16,54 @@ $("document").ready(function(){
     var lon;
     var currentDay = "(" + moment().format('l') + ")";
 
+    var recentCities = [];
+
     $("#cityBtn").on("click", function(event) {
         event.preventDefault();
+        $("#recentSearches").html("");
+        clearInfo();
         var city = $("#city").val();
         console.log(city);
         getInfo(city);
-    });
+        // addCities(city);
 
-    // var city = "miami"; 
-    // console.log(city);
+        recentCities.push(city);
+        console.log(recentCities);
+        if (recentCities.length == 5) {
+            recentCities.shift()
+        }
+
+        $.each(recentCities, function(index, value) {
+            $("#recentSearches").html("");
+            var btn = $("<li class='list-group-item'>").html(value);
+            $("#recentSearches").append(btn);
+        })
+    })
+
+    // function addCities(city) {
+    //     recentCities.push(city);
+    //     console.log(recentCities);
+    //     if (recentCities.length == 5) {
+    //         recentCities.shift()
+    //     }
+
+    //     $.each(recentCities, function(index, value) {
+    //         $("#recentSearches").html("");
+    //         var btn = $("<li class='list-group-item'>").html(value);
+    //         $("#recentSearches").append(btn);
+    //     })
+    // }
+
+
+    function clearInfo() {
+        $("#cityName").html("");
+        $("#currentTemp").html("");
+        $("#humidity").html("");
+        $("#windSpeed").html("");
+        $("#UVIndex").html("");
+
+    }
+
 
     function getInfo(city) {
         var city;
@@ -53,7 +92,7 @@ $("document").ready(function(){
         var lat = results.coord.lat;
         var lon = results.coord.lon;
         console.log(lat, lon);
-        // var UVIndex = ;
+    
     
         var forecastURL= "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial" + "&appid=8391498daeaf403c89574dc9e5a777c7";
 
@@ -86,10 +125,6 @@ $("document").ready(function(){
                 var UVIndexText = response.value;
                 var UVIndex = $("<button type='button'>");
 
-                // <button type="button" class="btn btn-success">Success</button>
-                // <button type="button" class="btn btn-danger">Danger</button>
-                // <button type="button" class="btn btn-warning">Warning</button>
-
                 if (parseInt(UVIndexText) < 3) {
                     var UVIndexColor = "btn btn-success";
                 } else if (parseInt(UVIndexText) >= 3 && parseInt(UVIndexText) <= 5 ) {
@@ -107,6 +142,7 @@ $("document").ready(function(){
         })
     }
 
+    
 
 
 

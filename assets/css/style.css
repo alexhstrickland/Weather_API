@@ -1,10 +1,63 @@
-header {
-    background-color:black;
+
+
+nav {
+    background-color:#293136;
     color: white;
     margin-top: 0;
     text-align: center;
     padding: 5px;
+    position: fixed;
+    width: 100%;
 }
-.col-md-4 {
-    background-color: lime;
+.sidenav {
+    background-color: rgb(240, 240, 240);
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 225px;
+    margin-top: 66px;
+}
+
+h2 {
+    padding-top: 10px;
+    font-size: larger;
+    text-align: center;
+}
+
+#city {
+    margin-left: 10px;
+}
+
+#cityBtn {
+    margin-right: 10px;
+}
+
+#recent {
+    width: 12.75rem;
+    margin-left: 10px;
+}
+
+#cityInfo {
+    margin-top: 100px;
+    border: solid lightgray 1px;
+    margin-left: 255px;
+    margin-right: 55px;
+    padding: 20px;
+
+}
+#forecast {
+    /* border: solid lightgray 1px; */
+    margin-top: 50px;
+    margin-left: 255px;
+    margin-right: 50px;
+
+}
+
+
+#weather {
+    width: 180px;
+    height: 200px;
+    border: lightgray 1px solid;
+    margin: 5px;
 }

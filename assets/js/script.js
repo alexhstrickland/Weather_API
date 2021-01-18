@@ -1,4 +1,5 @@
 $("document").ready(function(){
+    // initial variables
 
     var city;
     var country;
@@ -24,10 +25,11 @@ $("document").ready(function(){
     var date;
     var dayDate;
     var fiveDay;
+
+    // current date
     var currentDay = "(" + moment().format('l') + ")";
 
-    // var recentCities = [];
-
+    // event listener for search button
     $("#cityBtn").on("click", function(event) {
         event.preventDefault();
         $("#cityInfo").css("border", "solid lightgray 1px")
@@ -38,7 +40,7 @@ $("document").ready(function(){
 
     })
 
-
+    // function to add cities to array
     function addCities(city) {
         var recentCities = JSON.parse(localStorage.getItem("History")) || [];
         recentCities.push(city);
@@ -49,7 +51,7 @@ $("document").ready(function(){
 
         $("#recentSearches").html("");
 
-
+        // for loop to add recent searches
         for (var i = 0; i < recentCities.length; i++) {
             localStorage.setItem("History", JSON.stringify(recentCities));
             var btn = $("<li class='list-group-item'>").html(recentCities[i]);
@@ -57,7 +59,7 @@ $("document").ready(function(){
         }
     }
 
-
+    // function to clear info
     function clearInfo() {
         $("#cityName").html("");
         $("#currentTemp").html("");
@@ -94,15 +96,15 @@ $("document").ready(function(){
         $("#dayTemps-36").html("");
         $("#dayHumidity-36").html("");
         $("weather-36").html("");
-        
-
     }
 
-
+    // function to get city from API
     function getInfo(city) {
         var city;
+        // API URL for city
         var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=8391498daeaf403c89574dc9e5a777c7";
 
+        // API call
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -112,6 +114,7 @@ $("document").ready(function(){
         })
     }
 
+    // function to get info to display on page
     function getMoreInfo(response) {
         var results =  response;
         var iconW = results.weather[0].icon;
@@ -124,9 +127,10 @@ $("document").ready(function(){
         var lat = results.coord.lat;
         var lon = results.coord.lon;
     
-    
+        // API URL for latitude and longitude
         var forecastURL= "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial" + "&appid=8391498daeaf403c89574dc9e5a777c7";
 
+        // API call
         $.ajax({
             url: forecastURL,
             method: "GET"
@@ -145,9 +149,10 @@ $("document").ready(function(){
         $("#humidity").append("Humidity: " + humidity + "%");
         $("#windSpeed").append("Wind Speed: " + windSpeed);
 
-
+            // API URL for UV index
             var UVURL= "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&units=imperial" + "&appid=8391498daeaf403c89574dc9e5a777c7";
 
+            // API Call
             $.ajax({
                 url: UVURL,
                 method: "GET"
@@ -174,6 +179,7 @@ $("document").ready(function(){
         })
     }
 
+    // event listener to add recent searches to side bar
     $("#recentSearches").on("click", "li", function() {
         clearInfo();
         var city = $(this).html();
@@ -181,6 +187,7 @@ $("document").ready(function(){
         addCities(city);
     });
 
+    // function to display 5-day forecast information
     function displayForecast(resultsTwo) {
         for (var i = 4; i < resultsTwo.list.length; i+=8) {
             var date = resultsTwo.list[i].dt;

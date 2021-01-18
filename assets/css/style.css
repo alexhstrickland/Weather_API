@@ -40,7 +40,7 @@ h2 {
 
 #cityInfo {
     margin-top: 100px;
-    border: solid lightgray 1px;
+    /* border: solid lightgray 1px; */
     margin-left: 255px;
     margin-right: 55px;
     padding: 20px;
@@ -56,14 +56,12 @@ h2 {
 
 
 #weather-4, #weather-12, #weather-20, #weather-28, #weather-36 {
+    padding-top: 15px;
     width: 180px;
     height: 200px;
-    /* border: lightgray 1px solid; */
     margin: 5px;
-}
-
-.UV {
-    border: solid red 1px;
+    color: white;
+    font-weight: bold
 }
 
 #cityName {
@@ -75,3 +73,9 @@ h2 {
 #currentTemp, #humidity, #windSpeed, #UVIndex {
     margin-bottom: 20px;
 } 
+
+#h7 {
+    padding-bottom: 15px;
+    font-size: x-large;
+    font-weight: bold;
+}

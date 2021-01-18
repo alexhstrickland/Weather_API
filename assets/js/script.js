@@ -23,12 +23,14 @@ $("document").ready(function(){
     var resultsTwo;
     var date;
     var dayDate;
+    var fiveDay;
     var currentDay = "(" + moment().format('l') + ")";
 
     // var recentCities = [];
 
     $("#cityBtn").on("click", function(event) {
         event.preventDefault();
+        $("#cityInfo").css("border", "solid lightgray 1px")
         clearInfo();
         var city = $("#city").val();
         getInfo(city);
@@ -62,6 +64,37 @@ $("document").ready(function(){
         $("#humidity").html("");
         $("#windSpeed").html("");
         $("#UVIndex").html("");
+
+        $("#dayDate-4").html("");
+        $("#dayIconImage-4").html("");
+        $("#dayTemps-4").html("");
+        $("#dayHumidity-4").html("");
+        $("weather-4").html("");
+
+        $("#dayDate-12").html("");
+        $("#dayIconImage-12").html("");
+        $("#dayTemps-12").html("");
+        $("#dayHumidity-12").html("")
+        $("weather-12").html("");
+
+        $("#dayDate-20").html("");
+        $("#dayIconImage-20").html("");
+        $("#dayTemps-20").html("");
+        $("#dayHumidity-20").html("");
+        $("weather-20").html("");
+
+        $("#dayDate-28").html("");
+        $("#dayIconImage-28").html("");
+        $("#dayTemps-28").html("");
+        $("#dayHumidity-28").html("");
+        $("weather-28").html("");
+
+        $("#dayDate-36").html("");
+        $("#dayIconImage-36").html("");
+        $("#dayTemps-36").html("");
+        $("#dayHumidity-36").html("");
+        $("weather-36").html("");
+        
 
     }
 
@@ -152,18 +185,23 @@ $("document").ready(function(){
         for (var i = 4; i < resultsTwo.list.length; i+=8) {
             var date = resultsTwo.list[i].dt;
             var dayDate = moment.unix(date).format("M/DD/YYYY");
-            var dayTemps = "Temperature: " + resultsTwo.list[i].main.temp + "F";
+            var dayTemps = "Temp: " + resultsTwo.list[i].main.temp + " F";
             var dayHumidity = "Humidity: " + resultsTwo.list[i].main.humidity + "%";
             var dayIcon = resultsTwo.list[i].weather[0].icon;
             var dayImageUrl = "http://openweathermap.org/img/w/" + dayIcon + ".png";
             var dayIconImage = $("<img>");
             dayIconImage.attr("src", dayImageUrl);
 
+            var fiveDay = "5-Day Forecast:";
+
+            $("#h7").html(fiveDay);
+
             $("#dayDate-" + i).append(dayDate);
             $("#dayIconImage-" + i).append(dayIconImage);
             $("#dayTemps-" + i).append(dayTemps);
             $("#dayHumidity-" + i).append(dayHumidity);
-        
+            
+            $("#weather-" + i).css("background-color", "rgb(0, 60, 255)");
             
         }
     }

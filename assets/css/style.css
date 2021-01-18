@@ -55,10 +55,10 @@ h2 {
 }
 
 
-#weather {
+#weather-4, #weather-12, #weather-20, #weather-28, #weather-36 {
     width: 180px;
     height: 200px;
-    border: lightgray 1px solid;
+    /* border: lightgray 1px solid; */
     margin: 5px;
 }
 

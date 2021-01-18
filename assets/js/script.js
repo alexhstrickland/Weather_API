@@ -14,6 +14,13 @@ $("document").ready(function(){
     var imageUrl;
     var lat;
     var lon;
+    var dayTemps;
+    var dayHumidity;
+    var dayIcon;
+    var dayImageUrl;
+    var dayIconImage;
+    var response;
+    var resultsTwo;
     var currentDay = "(" + moment().format('l') + ")";
 
     // var recentCities = [];
@@ -66,6 +73,7 @@ $("document").ready(function(){
             method: "GET"
         }).then(function(response) {
             getMoreInfo(response);
+            displayForecast(response);          
         })
     }
 
@@ -89,11 +97,12 @@ $("document").ready(function(){
             method: "GET"
         }).then(function(response) {
             console.log(response);
-            
+            var resultsTwo = response;
+            displayForecast(resultsTwo);
         
 
 
-        var country = response.city.country;
+        var country = resultsTwo.city.country;
         var cityName = results.name + ", " + country + " " + currentDay;
     
         $("#cityName").append(cityName, iconImage);
@@ -135,8 +144,24 @@ $("document").ready(function(){
         var city = $(this).html();
         getInfo(city);
         addCities(city);
-    })
+    });
 
+    function displayForecast(resultsTwo) {
+        for (var i = 4; i < resultsTwo.list.length; i+=8) {
+            var dayTemps = resultsTwo.list[i].main.temp;
+            var dayHumidity = resultsTwo.list[i].main.humidity;
+            var dayIcon = resultsTwo.list[i].weather[0].icon;
+            var dayImageUrl = "http://openweathermap.org/img/w/" + dayIcon + ".png";
+            var dayIconImage = $("<img>");
+            dayIconImage.attr("src", dayImageUrl);
+
+            $("#weather-" + i).append(dayIconImage);
+            $("#weather-" + i).append(dayTemps);
+            $("#weather-" + i).append(dayHumidity);
+        
+            
+        }
+    }
     
 
 

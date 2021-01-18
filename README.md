@@ -2,9 +2,9 @@
 
 ## Description
 
-For this project, I have created a daily work calendar that displays the work hours of 9 AM to 5 PM. The calender contains time blocks for each hour of the workday. If the hour has passed in the day, the time block is gray. For the current hour, the time block is red. If the time block hour has not occurred yet, then the timeblock is the color green.
+For this project, I have created a weather dashboard that will display the current weather conditions along with a 5-day forecast. This information includes the temperature, humidity, windspeed, and the UV index.
 
-The user is able to add text in each time block to add important agenda items. This is then saved into local storage for the day.
+The user is able to see recent searches and even can click on these recent searches to return to that location's forecast. The recent searches are located in the sidebar on the left side of the page. The recent searches are saved into the local storage.
 
 The project has been deployed at a live URL. To access the live URL, please click here [Weather_Api](https://alexhstrickland.github.io/Weather_API/).
 

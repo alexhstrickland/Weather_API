@@ -21,6 +21,8 @@ $("document").ready(function(){
     var dayIconImage;
     var response;
     var resultsTwo;
+    var date;
+    var dayDate;
     var currentDay = "(" + moment().format('l') + ")";
 
     // var recentCities = [];
@@ -148,16 +150,19 @@ $("document").ready(function(){
 
     function displayForecast(resultsTwo) {
         for (var i = 4; i < resultsTwo.list.length; i+=8) {
-            var dayTemps = resultsTwo.list[i].main.temp;
-            var dayHumidity = resultsTwo.list[i].main.humidity;
+            var date = resultsTwo.list[i].dt;
+            var dayDate = moment.unix(date).format("M/DD/YYYY");
+            var dayTemps = "Temperature: " + resultsTwo.list[i].main.temp + "F";
+            var dayHumidity = "Humidity: " + resultsTwo.list[i].main.humidity + "%";
             var dayIcon = resultsTwo.list[i].weather[0].icon;
             var dayImageUrl = "http://openweathermap.org/img/w/" + dayIcon + ".png";
             var dayIconImage = $("<img>");
             dayIconImage.attr("src", dayImageUrl);
 
-            $("#weather-" + i).append(dayIconImage);
-            $("#weather-" + i).append(dayTemps);
-            $("#weather-" + i).append(dayHumidity);
+            $("#dayDate-" + i).append(dayDate);
+            $("#dayIconImage-" + i).append(dayIconImage);
+            $("#dayTemps-" + i).append(dayTemps);
+            $("#dayHumidity-" + i).append(dayHumidity);
         
             
         }

@@ -1,5 +1,4 @@
-
-
+/*top title area*/
 nav {
     background-color:#293136;
     color: white;
@@ -9,6 +8,7 @@ nav {
     position: fixed;
     width: 100%;
 }
+/*side naviation properties*/
 .sidenav {
     background-color: rgb(240, 240, 240);
     height: 100%;
@@ -19,42 +19,47 @@ nav {
     margin-top: 66px;
 }
 
+/*header 2*/
 h2 {
     padding-top: 10px;
     font-size: larger;
     text-align: center;
 }
 
+/*input properties*/
 #city {
     margin-left: 10px;
 }
 
+/*button properties*/
 #cityBtn {
     margin-right: 10px;
 }
 
+/*recent searches properties*/
 #recent {
     width: 12.75rem;
     margin-left: 10px;
 }
 
+/*top forecast*/
 #cityInfo {
     margin-top: 100px;
-    /* border: solid lightgray 1px; */
     margin-left: 255px;
     margin-right: 55px;
     padding: 20px;
 
 }
+
+/*5-day forecast container*/
 #forecast {
-    /* border: solid lightgray 1px; */
     margin-top: 50px;
     margin-left: 255px;
     margin-right: 50px;
 
 }
 
-
+/*weather card properties*/
 #weather-4, #weather-12, #weather-20, #weather-28, #weather-36 {
     padding-top: 15px;
     width: 180px;
@@ -64,16 +69,19 @@ h2 {
     font-weight: bold
 }
 
+/*city name properties*/
 #cityName {
     font-size: larger;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
+/*added margin for spacing between text*/
 #currentTemp, #humidity, #windSpeed, #UVIndex {
     margin-bottom: 20px;
 } 
 
+/*h7 properties*/
 #h7 {
     padding-bottom: 15px;
     font-size: x-large;

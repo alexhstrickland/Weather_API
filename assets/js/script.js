@@ -16,24 +16,26 @@ $("document").ready(function(){
     var lon;
     var currentDay = "(" + moment().format('l') + ")";
 
-    var recentCities = [];
+    // var recentCities = [];
 
     $("#cityBtn").on("click", function(event) {
         event.preventDefault();
         clearInfo();
         var city = $("#city").val();
-        console.log(city);
         getInfo(city);
         addCities(city);
 
     })
 
+
     function addCities(city) {
+        var recentCities = JSON.parse(localStorage.getItem("History")) || [];
         recentCities.push(city);
-        console.log(recentCities);
-        if (recentCities.length == 5) {
+        if (recentCities.length == 6) {
             recentCities.shift()
         }
+
+
         $("#recentSearches").html("");
 
 
@@ -63,7 +65,6 @@ $("document").ready(function(){
             url: queryURL,
             method: "GET"
         }).then(function(response) {
-            console.log(response);
             getMoreInfo(response);
         })
     }
@@ -72,16 +73,13 @@ $("document").ready(function(){
         var results =  response;
         var iconW = results.weather[0].icon;
         var imageUrl = "http://openweathermap.org/img/w/" + iconW + ".png";
-        console.log(imageUrl);
         var iconImage = $("<img>");
         iconImage.attr("src", imageUrl);
-        console.log(iconImage);
         var currentTemp = results.main.temp + " F";
         var humidity = results.main.humidity;
         var windSpeed = results.wind.speed + " MPH";
         var lat = results.coord.lat;
         var lon = results.coord.lon;
-        console.log(lat, lon);
     
     
         var forecastURL= "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial" + "&appid=8391498daeaf403c89574dc9e5a777c7";
@@ -131,6 +129,13 @@ $("document").ready(function(){
             })
         })
     }
+
+    $("#recentSearches").on("click", "li", function() {
+        clearInfo();
+        var city = $(this).html();
+        getInfo(city);
+        addCities(city);
+    })
 
     
 
